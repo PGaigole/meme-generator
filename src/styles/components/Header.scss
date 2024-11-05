@@ -1,0 +1,9 @@
+@use "../abstracts/" as *;
+
+header {
+  background: $header-background;
+  padding: 20px 30px;
+  color: $white;
+  display: flex;
+  gap: 5px;
+}

@@ -1,0 +1,49 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: px-rem($font-size-h1);
+  font-weight: $font-weight-700;
+  line-height: 24.25px;
+  letter-spacing: -0.1em;
+}
+
+label {
+  font-size: px-rem($font-size-label);
+  font-weight: $font-weight-500;
+  line-height: 16.37px;
+}
+
+input {
+  font-size: px-rem($font-size-label);
+  font-weight: $font-weight-400;
+  line-height: 19.65px;
+  color: $pale-sky;
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+button {
+  font-size: px-rem($font-size-button);
+  font-weight: $font-weight-700;
+  line-height: 18.7px;
+  letter-spacing: -0.1em;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

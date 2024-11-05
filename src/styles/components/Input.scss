@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.input-container {
+  flex-basis: 100%;
+  > label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    > input {
+      border: 1px solid $mischka;
+      border-radius: 5px;
+      padding: 10px;
+    }
+  }
+}
