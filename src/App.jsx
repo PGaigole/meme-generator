@@ -3,6 +3,7 @@ import "./App.scss";
 import Header from "./components/Header";
 import Input from "./components/shared/Input";
 import Button from "./components/shared/Button";
+import Meme from "./components/Meme";
 
 export default function App() {
   const [memes, setMemes] = useState([]);
@@ -11,16 +12,17 @@ export default function App() {
     top_text: "",
     bottom_text: "",
   });
+  
   useEffect(() => {
-    fetch("/memesData.json")
+    fetch("https://api.imgflip.com/get_memes")
       .then((response) => response.json())
-      .then((data) => setMemes(data));
+      .then((data) => setMemes(data.data.memes));
   }, []);
-  // const [randomUrl, setRandomUrl] = useState("");
+
   function generateRandomImage(event) {
     event.preventDefault();
-    const index = Math.floor(Math.random() * memes.data.memes.length);
-    const url = memes.data.memes[index].url;
+    const index = Math.floor(Math.random() * memes.length);
+    const url = memes[index].url;
     setRandomUrl(url);
   }
 
@@ -35,7 +37,6 @@ export default function App() {
   function handleSubmit(event) {
     generateRandomImage(event);
     event.preventDefault();
-    console.log(formData);
   }
 
   return (
@@ -60,15 +61,11 @@ export default function App() {
           <Button text="Get a new meme image 🖼" />
         </form>
         {randomUrl && (
-          <div className="meme">
-            <img
-              className="random-image"
-              src={randomUrl}
-              alt="Meme image which is generated randomly with text in the form"
-            />
-            <h2 className="meme-text top">{formData.top_text}</h2>
-            <h2 className="meme-text bottom">{formData.bottom_text}</h2>
-          </div>
+          <Meme
+            topText={formData.top_text}
+            bottomText={formData.bottom_text}
+            url={randomUrl}
+          />
         )}
       </main>
     </div>
